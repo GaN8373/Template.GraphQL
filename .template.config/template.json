@@ -1,0 +1,56 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "GaN8373",
+  "classifications": ["Web", "GraphQL"],
+  "identity": "GaN8373.Templates.GraphQL.Server",
+  "sourceName": "GaN8373.Templates.GraphQL.Server",
+  "name": "GaN8373 GraphQL Server ",
+  "shortName": "graphql",
+  "defaultName": "GraphQL",
+  "description": "edit from Michael Staib Template(https://github.com/ChilliCream/graphql-platform/blob/main/templates/server/.template.config/template.json)",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "primaryOutputs": [
+    {
+      "path": "Datasource.Database/Datasource.Database.csproj"
+    },
+    {
+      "path": "Graphql.Server/Graphql.Server.csproj"
+    }
+  ],
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net8.0",
+          "description": "Target .NET 8"
+        },
+        {
+          "choice": "net9.0",
+          "description": "Target .NET 9"
+        }
+      ],
+      "replaces": "net9.0",
+      "defaultValue": "net9.0"
+    }
+  },
+  "postActions": [
+    {
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore'"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}
