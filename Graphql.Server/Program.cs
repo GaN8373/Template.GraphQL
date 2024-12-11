@@ -25,7 +25,7 @@ builder.Services.AddSerilog()
 
 builder.AddGraphQL()
     // find source generator code replace the AddTypes, HotChocolateTypeModule
-    .AddTypes()
+    .AddServerTypes()
     .ModifyPagingOptions(options =>
     {
         options.IncludeNodesField = true;
