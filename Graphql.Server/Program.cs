@@ -1,5 +1,5 @@
 using FreeSql;
-using Graphql.Server.Sys.Listener;
+using Graphql.Server.Sys.Common;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,16 +25,18 @@ builder.Services.AddSerilog()
 
 builder.AddGraphQL()
     // find source generator code replace the AddTypes, HotChocolateTypeModule
-    .AddTypes()
+    .AddServerTypes()
     .ModifyPagingOptions(options =>
     {
         options.IncludeNodesField = true;
-        // options.IncludeTotalCount = true;
+        options.IncludeTotalCount = true;
         options.DefaultPageSize = 20;
     })
-    .AddDiagnosticEventListener<ErrorLogListener>()
+    // .AddDiagnosticEventListener<ErrorLogListener>()
     .AddSorting()
     .AddFiltering()
+    .AddErrorInterfaceType<AppError>()
+    .AddErrorFilter(AppError.ErrorFilter)
     ;
 
 var app = builder.Build();
